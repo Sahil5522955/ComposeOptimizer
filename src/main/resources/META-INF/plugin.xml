@@ -3,6 +3,12 @@
     <name>Compose Optimizer</name>
     <vendor email="sahiljaroli159@gmail.com">SahilJaroli</vendor>
 
+    <description><![CDATA[
+        A real-time static code analysis tool designed for Jetpack Compose developers.
+        Detects missing state remember configurations, unsafe mutable parameter collection objects,
+        and blocking thread executions within composition frames.
+    ]]></description>
+
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
     <depends>org.jetbrains.kotlin</depends>

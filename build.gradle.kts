@@ -33,4 +33,9 @@ intellijPlatform {
             email = "sahiljaroli159@gmail.com"
         }
     }
+    // MAPS SECURE TOKENS DIRECTLY TO SYSTEM ENVIRONMENT PATHS
+    publishing {
+        token.set(providers.environmentVariable("PUBLISH_TOKEN"))
+        channels.set(listOf("default"))
+    }
 }
