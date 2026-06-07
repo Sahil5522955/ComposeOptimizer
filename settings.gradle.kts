@@ -3,6 +3,11 @@ import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
 rootProject.name = "ComposeOptimizer"
 
 pluginManagement {
+    // CRITICAL: Tells Gradle where to download the Kotlin and IntelliJ plugins from
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
     plugins {
         id("org.jetbrains.kotlin.jvm") version "2.1.20"
         id("org.jetbrains.changelog") version "2.5.0"

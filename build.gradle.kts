@@ -2,31 +2,35 @@ import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 plugins {
     id("org.jetbrains.kotlin.jvm")
-    id("org.jetbrains.intellij.platform")
-    id("org.jetbrains.changelog")
+    id("org.jetbrains.intellij.platform") // Removed the version here to fix the classpath error
+}
+
+repositories {
+    mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 dependencies {
-    testImplementation("junit:junit:4.13.2")
-
     intellijPlatform {
-        intellijIdea("2025.2.6.2")
+        // Targets your exact sandbox version
+        intellijIdeaCommunity("2025.2.6.2")
         testFramework(TestFrameworkType.Platform)
 
+        // CRITICAL: This tells Gradle to download the K2 developer API libraries
+        // and add them to your IDE project classpath
         bundledPlugin("org.jetbrains.kotlin")
     }
 }
 
 intellijPlatform {
     pluginConfiguration {
+        id = "com.sahiljaroli.composeoptimizer"
         name = "Compose Optimizer"
-    }
-}
-
-tasks {
-    runIde {
-        // These system arguments instruct the 2025 sandbox runtime environment
-        // to bypass strict K2 verification checks for local debugging
-        jvmArgs("-Didea.kotlin.plugin.k2=false", "-Dkotlin.k2.modules.as.k1=true")
+        vendor {
+            name = "SahilJaroli"
+            email = "sahiljaroli159@gmail.com"
+        }
     }
 }
